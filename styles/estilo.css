@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Anton -> titles */
+@font-face {
+    font-family: "Anton";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/anton-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Inter -> body */
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("../fonts/inter-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --accent-color: #bb86fc;
+    --focus-color: #ffbf47;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    /*titles*/
+    font-family: "Anton", sans-serif;
+    margin: 0;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:focus {
+        outline: 3px solid var(--focus-color);
+        outline-offset: 2px;
+        border-radius: 1px;
+    }
+}
+
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Inter", sans-serif;
+
+
+    margin: 0;
+    min-width: 390px; /*solo se puede comprimir hasta los 390px*/
+
+
+
+    >header {
+        background-color: var(--card-bg);
+        margin: 0 0 1rem 0; /*↑→↓←*/
+        padding: 1rem;
+        text-align: center;
+
+        
+    } /* header */
+
+
+
+    >main {
+        padding: 1rem;
+
+        
+    } /* main */
+
+
+
+    >footer {
+        background-color: var(--card-bg);
+        padding: 0.1rem;
+        margin: 1rem 0 0 0; /*↑→↓←*/
+        text-align: center;
+
+        
+    } /* footer */
+
+
+}
