@@ -7,28 +7,48 @@
     <meta name="description" content="Esto es una descripción de la página" />
     <meta name="robots" content="noindex, nofollow" /><!-- no indexar la pagina -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Este es el título de la página</title>
-
-    <!-- Scripts -->
-    <script src="./scripts/clock.js"></script>
+    <meta name="theme-color" content="#000004" />
+    <meta name="color-scheme" content="dark" />
 
     <!-- Estilos -->
     <link rel="stylesheet" href="./styles/estilo.css" />
+    <link rel="stylesheet" href="./styles/loading.css" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="128x128" href="./images/favicon.png" />
     <link rel="icon" href="./images/favicon.ico" sizes="16x16 32x32 48x48 128x128" />
 
     <!-- Fuentes preload -->
-    <link rel="preload" href="./fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/anton-latin.woff2" as="font" type="font/woff2" />
 
+    <!-- Scripts -->
+    <script src="./scripts/clock.js"></script>
 
-    <meta name="theme-color" content="#000004" />
-    <meta name="color-scheme" content="dark" />
+    <title>Este es el título de la página</title>
+   
 </head>
 
 <body>
+
+    <div
+        id="loading"
+        class="loading"
+        role="status"
+        aria-live="polite"
+        aria-label="Cargando contenido de la página"
+    >
+        <div class="contenedorLoadingSVG">
+            <div class="loadingSVG" style="--progress: 0.6;">
+                <svg viewBox="0 0 700 100" aria-hidden="true" focusable="false">
+                    <path d="M0,0 L700,0 L700,100 L0,100 Z" fill="currentColor"/>
+                </svg>
+                <span class="loadingSVG_fill"></span>
+            </div>
+        </div>
+    </div>
+
+
+    
     <header>
         <h1>Título de la página</h1>
         <h2>Descripción de la página</h2>
@@ -63,8 +83,28 @@
 
         <section id="section2">
             <h2>Sección 2</h2>
-            <p>Contenido de la sección 2</p>
+            <article>
+                <h3>Artículo 1</h3>
+                <p>Contenido del artículo 1</p>
+            </article>
+
+            <article>
+                <h3>Artículo 2</h3>
+                <p>Contenido del artículo 2</p>
+            </article>
         </section>
+
+        <section id="section3">
+            <h2>Sección 3</h2>
+            <article>
+                <h3>Artículo 1</h3>
+                <p>Contenido del artículo 1</p>
+            </article>
+
+            <article>
+                <h3>Artículo 2</h3>
+                <p>Contenido del artículo 2</p>
+            </article>
 
     </main>
 

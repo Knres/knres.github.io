@@ -104,6 +104,6 @@
 
     <!-- Color del svg loading (blanco) -->
     <svg> 
-        <defs><style>.cls-1{fill:#ffffff;}.cls-2{fill:none;}</style></defs>
+        <defs><style>.cls-1{fill:#e0e0e0;}.cls-2{fill:none;}</style></defs>
     </svg>
 </svg>

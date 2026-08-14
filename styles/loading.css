@@ -1,0 +1,33 @@
+.loading {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    overflow: hidden;
+    background-color: var(--bg-color);
+}
+
+
+.contenedorLoadingSVG {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+}
+
+.loadingSVG {
+    --progress: 0;
+    width: 350px;
+    height: 50px;
+    mask: url(../images/loading.svg) no-repeat center / contain;
+    background-color: color-mix(in srgb, var(--text-color) 25%, transparent);
+
+}
+
+.loadingSVG_fill {
+    display: block;
+    width: 100%;
+    background-color: var(--text-color);
+    transform: scaleX(var(--progress));
+    transform-origin: left;
+}

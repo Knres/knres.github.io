@@ -25,5 +25,7 @@ function updateClock() {
     elementoTiempo.textContent = fecha + ' ' + hora;
 }
 
-setInterval(updateClock, 1000);
-updateClock();
+document.addEventListener('DOMContentLoaded', () => {
+    updateClock();
+    setInterval(updateClock, 1000);
+});
