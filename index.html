@@ -19,9 +19,10 @@
     <link rel="icon" href="./images/favicon.ico" sizes="16x16 32x32 48x48 128x128" />
 
     <!-- Fuentes preload -->
-    <link rel="preload" href="./fonts/anton-latin.woff2" as="font" type="font/woff2" />
+    <link rel="preload" href="./fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Scripts -->
+    <script type="module" src="./scripts/loading.js"></script>
     <script src="./scripts/clock.js"></script>
 
     <title>Este es el título de la página</title>
@@ -37,13 +38,17 @@
         aria-live="polite"
         aria-label="Cargando contenido de la página"
     >
-        <div class="contenedorLoadingSVG">
-            <div class="loadingSVG" style="--progress: 0.6;">
-                <svg viewBox="0 0 700 100" aria-hidden="true" focusable="false">
-                    <path d="M0,0 L700,0 L700,100 L0,100 Z" fill="currentColor"/>
-                </svg>
-                <span class="loadingSVG_fill"></span>
-            </div>
+        <span class="loading-text">Cargando...</span>
+        <span class="loading-percentage" aria-hidden="true">0%</span>
+        <div class="loading-bar">
+            <svg class="loading-svg" viewBox="0 0 700 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <defs>
+                    <clipPath id="loading-progress-mask">
+                        <rect id="loading-progress-rect" x="0" y="0" width="0" height="100"></rect>
+                    </clipPath>
+                </defs>
+                <image href="./images/loading.svg" x="0" y="0" width="700" height="100" clip-path="url(#loading-progress-mask)"></image>
+            </svg>
         </div>
     </div>
 
@@ -73,11 +78,21 @@
             <article>
                 <h3>Artículo 1</h3>
                 <p>Contenido del artículo 1</p>
+                <div style="width: 100%; height: 300px; overflow: hidden;">
+                    <img src="./images/imgPesada1.jpg" alt="Imagen de prueba" style="width: 100%; height: auto;" />
+                    <img src="./images/imgPesada2.jpg" alt="Imagen de prueba" style="width: 100%; height: auto;" />
+                    <img src="./images/imgPesada3.jpg" alt="Imagen de prueba" style="width: 100%; height: auto;" />
+                </div>
             </article>
 
             <article>
                 <h3>Artículo 2</h3>
                 <p>Contenido del artículo 2</p>
+            </article>
+
+            <article>
+                <h3>Recurso pesado de prueba</h3>
+
             </article>
         </section>
 
