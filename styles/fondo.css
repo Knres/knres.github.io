@@ -1,0 +1,49 @@
+.fondo{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;  /* 100% del alto de la ventana */
+    overflow: hidden;
+
+    z-index: -1;   /* Envía el video al fondo, detrás del contenido */
+    pointer-events: none; /* Evita que el video interfiera con clics o selección */
+
+    display: flex;
+    justify-content: center;
+
+    /* Vinculamos la animación al scroll de la página */
+    animation-name: opacidadVideo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: scroll(root block);
+}
+
+.fondovideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* recorta los excedentes manteniendo la proporción original */
+}
+
+@keyframes cambiarFondo {
+    0% {
+        background-color: #00000000;
+    }
+    100% {
+        background-color: var(--bg-color);
+    }
+}
+
+@keyframes opacidadVideo {
+    0% {
+        opacity: 0.1; /* video opaco */
+    }
+    100% {
+        opacity: 0; /* video transparente -> color fondo */
+    }
+}
+
+main {
+    padding: 1rem;
+
+} /* main */

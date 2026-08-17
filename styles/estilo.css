@@ -68,10 +68,7 @@ body {
     min-width: 390px; /*solo se puede comprimir hasta los 390px*/
     color: var(--text-color);
     font-family: "Inter", sans-serif;
-
-
-
-
+    background-color: transparent; /* Importante para que el video se vea */
 
     >header {
         background-color: var(--card-bg);
@@ -85,9 +82,7 @@ body {
 
 
     >main {
-        padding: 1rem;
-
-        
+        padding: 1rem;        
     } /* main */
 
 
