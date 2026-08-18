@@ -67,6 +67,8 @@ function suscribirFinalizado() {
 
         }
 
+        reactivarScroll();
+
         setTimeout(() => {
             window.dispatchEvent(new Event('loading:quitado'));
         }, timeOutFinalizado);
@@ -78,7 +80,6 @@ function suscribirQuitado() {
         if (loadingQuitado) return;
 
         loadingQuitado = true;
-        reactivarScroll();
 
         if (overlay) {
             overlay.remove();
