@@ -18,10 +18,13 @@ function updateClock() {
     // Buscar el elemento <time> en el DOM con id="fecha-hora"
     const elementoTiempo = document.getElementById('clock');
 
-    const fechaHora = new Date(year, month - 1, day, h, m, s);
-    const fechaHoraISO = fechaHora.toISOString();
+    //const fechaHora = new Date(year, month - 1, day, h, m, s);
+    //const fechaHoraISO = fechaHora.toISOString();
 
-    elementoTiempo.dateTime = fechaHoraISO;
+    //elementoTiempo.dateTime = fechaHoraISO;
+    elementoTiempo.dateTime = now.toISOString();
+    
+    //elementoTiempo.textContent = now.toLocaleString(navigator.language);
     elementoTiempo.textContent = fecha + ' ' + hora;
 }
 
