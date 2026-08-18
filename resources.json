@@ -1,0 +1,55 @@
+{
+    "fonts": {
+        "anton-latin": {
+            "sourceUrl": "https://fontsource.org/fonts/anton/"
+        },
+        "inter-latin": {
+            "sourceUrl": "https://fontsource.org/fonts/inter/"
+        }
+    },
+
+
+    "image": {
+        "loading": {
+            "PYRO": {
+                "sourceUrl": "https://genshin-impact-fanon.fandom.com/wiki/Genshin_Impact_Fanon_Wiki?file=Pyro.svg"
+            },
+            "HYDRO": {
+                "sourceUrl": "https://genshin-impact-fanon.fandom.com/wiki/Genshin_Impact_Fanon_Wiki?file=Hydro.svg"
+            },
+            "ANEMO": {
+                "sourceUrl": "https://genshin-impact-fanon.fandom.com/wiki/Genshin_Impact_Fanon_Wiki?file=Anemo.svg"
+            },
+            "ELECTRO": {
+                "sourceUrl": "https://genshin-impact-fanon.fandom.com/wiki/Genshin_Impact_Fanon_Wiki?file=Electro.svg"
+            },
+            "DENDRO": {
+                "sourceUrl": "https://genshin-impact-fanon.fandom.com/wiki/Genshin_Impact_Fanon_Wiki?file=Dendro.svg"
+            },
+            "CRYO": {
+                "sourceUrl": "https://genshin-impact-fanon.fandom.com/wiki/Genshin_Impact_Fanon_Wiki?file=Cryo.svg"
+            },
+            "GEO": {
+                "sourceUrl": "https://genshin-impact-fanon.fandom.com/wiki/Genshin_Impact_Fanon_Wiki?file=Geo.svg"
+            },
+            "sourceUrl": "https://genshin-impact-fanon.fandom.com/wiki/Genshin_Impact_Fanon_Wiki"
+        },
+        "favicon": {
+            "sourceUrl": "https://re.xcdream.com/article/264.html"
+        }
+    },
+
+
+    "video": {
+        "atri": {
+            "sourceUrl": "https://re.xcdream.com/article/106.html"
+        }
+    },
+
+
+    "audio": {
+        "ohaiyogozaimasu": {
+            "sourceUrl": "https://re.xcdream.com/article/106.html"
+        }
+    }
+}
