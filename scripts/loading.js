@@ -111,65 +111,23 @@ function actualizarLoading(valor) {
 }
 
 
+/* TODO: Implementar la incrementación del loading con el estado de preparación real del entorno*/
+function iniciarContadorLoading() {
+    const duracionMs = 900;
+    const inicio = performance.now();
+    const intervaloActualizacion = 16; // Aprox 60 FPS
 
-function comprobarRecursos() {
-    const recursos = document.querySelectorAll('img, link[rel="stylesheet"], script, iframe');
-    const totalRecursos = recursos.length; // Total de recursos a cargar
-    let recursosCargados = 0;              // Contador de recursos cargados
+    const intervalo = setInterval(() => {
+        const transcurrido = performance.now() - inicio;
+        const porcentajeActual = Math.min((transcurrido / duracionMs) * 100, 100);
 
-    if (totalRecursos === 0) {
-        actualizarLoading(100);
-        window.dispatchEvent(new Event('loading:finalizado'));
-        return;
-    }
+        actualizarLoading(porcentajeActual);
 
-    function marcarRecursoCompletado() {
-        recursosCargados++;
-        
-        let progresoActual = (recursosCargados / totalRecursos) * 100;
-        actualizarLoading(progresoActual);
-
-        if (recursosCargados === totalRecursos) {
+        if (porcentajeActual >= 100) {
+            clearInterval(intervalo);
             window.dispatchEvent(new Event('loading:finalizado'));
         }
-    }
-
-    function recursoYaCargado(recurso) {
-        const tag = recurso.tagName.toLowerCase();
-
-        if (tag === 'img') {
-            return recurso.complete;
-        }
-
-        if (tag === 'script') {
-            return !recurso.src || recurso.readyState === 'loaded' || recurso.readyState === 'complete' || performance.getEntriesByName(recurso.src).length > 0;
-        }
-
-        if (tag === 'link') {
-            return !!recurso.sheet;
-        }
-
-        if (tag === 'iframe') {
-            try {
-                return !!recurso.contentDocument && recurso.contentDocument.readyState === 'complete';
-            } catch (error) {
-                // Cross-origin: no se puede inspeccionar; se espera al evento load/error.
-                return false;
-            }
-        }
-
-        return false;
-    }
-
-    recursos.forEach((recurso) => {
-        if (recursoYaCargado(recurso)) {
-            marcarRecursoCompletado();
-        } else {
-            recurso.addEventListener('load', marcarRecursoCompletado, { once: true });
-            recurso.addEventListener('error', marcarRecursoCompletado, { once: true });
-        }
-    });
-
+    }, intervaloActualizacion);
 }
 
 function iniciarLoading() {
@@ -179,7 +137,7 @@ function iniciarLoading() {
     suscribirFinalizado();
     suscribirQuitado();
 
-    comprobarRecursos();
+    iniciarContadorLoading();
 }
 
 /* ============================================================================================================
