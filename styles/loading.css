@@ -3,7 +3,9 @@
     inset: 0;
     z-index: 50;
     overflow: hidden;
+
     background-color: var(--bg-color);
+    
     transition: opacity 1s ease, visibility 1s ease;
 }
 
@@ -48,25 +50,3 @@
     height: 100%;
 }
 
-.contenedorLoadingSVG {
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-}
-
-.loadingSVG {
-    --progress: 0;
-    width: 350px;
-    height: 50px;
-    mask: url(../images/loading.svg) no-repeat center / contain;
-}
-
-.loadingSVG_fill {
-    display: block;
-    width: 100%;
-    background-color: var(--text-color);
-    transform: scaleX(var(--progress));
-    transform-origin: left;
-}

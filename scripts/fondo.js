@@ -52,7 +52,7 @@ function reproducirAudioSaludo() {
                 }
             };
 
-            window.addEventListener('pointerdown', reproducirConInteraccion, { once: true });
+            window.addEventListener('pointerdown', reproducirConInteraccion);// sin { once: true } -> eliminar listener tras reproducir el audio
             window.addEventListener('keydown', reproducirConInteraccion);// no { once: true } hay teclas no validas
             return;
         }

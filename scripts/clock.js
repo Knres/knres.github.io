@@ -17,6 +17,7 @@ function updateClock() {
 
     // Buscar el elemento <time> en el DOM con id="fecha-hora"
     const elementoTiempo = document.getElementById('clock');
+    if (!elementoTiempo) return;
 
     //const fechaHora = new Date(year, month - 1, day, h, m, s);
     //const fechaHoraISO = fechaHora.toISOString();
@@ -28,7 +29,19 @@ function updateClock() {
     elementoTiempo.textContent = fecha + ' ' + hora;
 }
 
+function actualizarAnyo() {
+    const elementoAño = document.getElementById('anyoCopyright');
+
+    if (!elementoAño) return;
+
+    const añoActual = new Date().getFullYear();
+
+    elementoAño.dateTime = String(añoActual);
+    elementoAño.textContent = añoActual;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     updateClock();
+    actualizarAnyo();
     setInterval(updateClock, 1000);
 });

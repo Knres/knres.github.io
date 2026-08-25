@@ -7,7 +7,7 @@
     <meta name="description" content="Esto es una descripción de la página" />
     <meta name="robots" content="noindex, nofollow" /><!-- no indexar la pagina -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#000004" />
+    <meta name="theme-color" content="#121212" />
     <meta name="color-scheme" content="dark" />
 
     <!-- Estilos -->
@@ -21,6 +21,7 @@
 
     <!-- Fuentes preload -->
     <link rel="preload" href="./fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Scripts -->
     <script type="module" src="./scripts/loading.js"></script>
@@ -40,7 +41,7 @@
         aria-live="polite"
         aria-label="Cargando contenido de la página"
     >
-        <span class="loading-text">Cargando...</span>
+        <span class="loading-text" aria-hidden="true">Cargando...</span>
         <span class="loading-percentage" aria-hidden="true">0%</span>
         <div class="loading-bar">
             <svg class="loading-svg" viewBox="0 0 700 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -84,6 +85,7 @@
         <audio
             id="audiosaludo" 
             preload="auto"
+            aria-hidden="true"
         >
             <source src="./audio/ohaiyogozaimasu.wav" type="audio/wav" />
             <source src="./audio/ohaiyogozaimasu.mp3" type="audio/mp3" />
@@ -95,7 +97,7 @@
 
         <div id="header-left" class="header-left">
             <!-- logotipo de la pagina-->
-            <a href="index.html" id="logo" class="logo" aria-label="Ir a la página principal">
+            <a href="./" id="logo" class="logo" aria-label="Ir a la página principal">
                 <img src="./images/logo.webp" alt="logotipo de la página" />
                 <span>Page</span>
             </a>
@@ -110,17 +112,12 @@
         <div id="header-right" class="header-right">
             <nav id="nav" class="nav" aria-label="Navegación principal">
                 <ul>
-                    <li><a href="./index.html">Inicio</a></li>
-                    <li><a href="./index.html">Inicio</a></li>
-                    <li><a href="./index.html">Inicio</a></li>
+                    <li><a href="./">Inicio</a></li>
+                    <li><a href="./">Inicio</a></li>
+                    <li><a href="./">Inicio</a></li>
                 </ul>
             </nav>
-        </div><!-- header-right -->
-
-        
-        
-
-        
+        </div><!-- header-right -->        
     </header>
 
     <main>
@@ -175,8 +172,9 @@
     <footer>
         <p>
             ©
-            <time datetime="2026"> 2026 </time>
-            <b><a href="https://github.com/Knres" target="_blank">Knres</a>.</b> 
+            <time datetime="2026" id="anyoCopyright">2026</time>
+            <a href="https://github.com/Knres" target="_blank" rel="noopener noreferrer">Knres</a>
+            .
         </p>
     </footer>
 </body>
