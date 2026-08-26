@@ -112,6 +112,9 @@ body {
     margin: 0;
     width: 100%;
     min-width: 390px; /*solo se puede comprimir hasta los 390px*/
+    min-height: 100vh; /*hacer que el body ocupe toda la altura disponible*/
+    display: flex;
+    flex-direction: column;
     
     color: var(--text-color);
     font-family: "Inter", sans-serif;
@@ -161,6 +164,7 @@ body {
 
 
     >main {
+        flex: 1;/*Para que el main ocupe el espacio disponible cuando hay poco contenido en main*/
         padding: 1rem;        
     } /* main */
 

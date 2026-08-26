@@ -10,6 +10,7 @@
 
     display: flex;
     justify-content: center;
+    opacity: 0.1; /*Para el caso de que no haya scroll, caso contrario -> opacidadVideo*/
 
     /* Vinculamos la animación al scroll de la página */
     animation-name: opacidadVideo;
