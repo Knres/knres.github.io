@@ -1,10 +1,35 @@
+<!--
+Se mantiene toda la plantilla, modificando cosas especificas de cada pagina:
+- main
+- head -> title, description, estilos y scripts especificos
+
+
+El header y footer son comunes a todas las paginas y no son pesador por lo que se importaran mediante JS para no repetir codigo
+El loading es la pantalla de carga por lo que se mantendrá (no importar con JS)
+El fondo al tratarse de video + audio se mantendrá (no importar con JS) para no afectar al progreso del loading (finalizar y quitar)
+
+/* 
+TODO:
+- modificar el orden de inicializacion de loading.js para convertir el fondo en modulos de importacion
+*/
+
+/////////////////////
+///  IMPORTANTE:  ///
+/////////////////////
+Tras añadir Estilos y Scripts comunes, haria falta añadirlos a la plantilla 
+y a todas las paginas que no los tengan, para que funcionen correctamente
+Al igual que se se hacen otras modificaciones en el head
+-->
+
+
+
 <!doctype html>
 <html lang="es">
 
 <head>
     <meta charset="utf-8" />
     <meta name="author" content="Knres" />
-    <meta name="description" content="Página principal del sitio web" />
+    <meta name="description" content="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
     <meta name="robots" content="noindex, nofollow" /><!-- no indexar la pagina -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#121212" />
@@ -19,13 +44,13 @@
     <link rel="icon" type="image/png" sizes="128x128" href="./images/favicon.png" />
     <link rel="icon" href="./images/favicon.ico" sizes="16x16 32x32 48x48 128x128" />
 
-    <!-- Scripts para cargar modulos -->
-    <script type="module" src="./scripts/add.header.js"></script>
-    <script type="module" src="./scripts/add.footer.js"></script>
-
     <!-- Fuentes preload -->
     <link rel="preload" href="./fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Scripts para cargar modulos -->
+    <script type="module" src="./scripts/add.header.js"></script>
+    <script type="module" src="./scripts/add.footer.js"></script>
 
     <!-- Scripts comunes -->
     <script type="module" src="./scripts/loading.js"></script>
@@ -39,7 +64,7 @@
 
 
     <!-- Título de la página -->
-    <title>Index · Page</title>
+    <title>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA · Page</title>
 </head>
 
 <body>
@@ -95,59 +120,15 @@
             <source src="./audio/ohaiyogozaimasu.wav" type="audio/wav" />
             <source src="./audio/ohaiyogozaimasu.mp3" type="audio/mp3" />
         </audio>
-
     </div><!-- fondo -->
-
+    
     <!-- header -->
     <div id="header"></div>
-
+     
     <main>
-        <h1>Página principal</h1>
 
-        <section id="section1">
-            <h2>Sección 1</h2>
-            <article>
-                <h3>Artículo 1</h3>
-                <p>Contenido del artículo 1</p>
-            </article>
-
-            <article>
-                <h3>Artículo 2</h3>
-                <p>Contenido del artículo 2</p>
-            </article>
-
-            <article>
-                <h3>Recurso pesado de prueba</h3>
-
-            </article>
-        </section>
-
-        <section id="section2">
-            <h2>Sección 2</h2>
-            <article>
-                <h3>Artículo 1</h3>
-                <p>Contenido del artículo 1</p>
-            </article>
-
-            <article>
-                <h3>Artículo 2</h3>
-                <p>Contenido del artículo 2</p>
-            </article>
-        </section>
-
-        <section id="section3">
-            <h2>Sección 3</h2>
-            <article>
-                <h3>Artículo 1</h3>
-                <p>Contenido del artículo 1</p>
-            </article>
-
-            <article>
-                <h3>Artículo 2</h3>
-                <p>Contenido del artículo 2</p>
-            </article>
-        </section>
     </main>
+
 
     <!-- footer -->
     <div id="footer"></div>

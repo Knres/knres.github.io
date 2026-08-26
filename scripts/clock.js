@@ -1,5 +1,7 @@
 'use strict';
 
+let relojIniciado = false;
+
 function updateClock() {
     const now = new Date();
     // Fecha
@@ -40,8 +42,15 @@ function actualizarAnyo() {
     elementoAño.textContent = añoActual;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function iniciarReloj() {
     updateClock();
-    actualizarAnyo();
+
+    if (relojIniciado) return;
+
+    relojIniciado = true;
     setInterval(updateClock, 1000);
-});
+}
+
+/* tanto el cargado del header como el footer ya tienen document.addEventListener('DOMContentLoaded', ...)*/
+window.addEventListener('header:cargado', iniciarReloj);
+window.addEventListener('footer:cargado', actualizarAnyo);
