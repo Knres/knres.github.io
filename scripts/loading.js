@@ -1,7 +1,7 @@
 'use strict';
 
 /* ============================================================================================================
- * Constantes y variables
+ * Recuperación de elementos del DOM
  * ==========================================================================================================*/
 const overlay = document.getElementById('loading');
 const texto = document.querySelector('.loading-text');
@@ -9,23 +9,25 @@ const porcentaje = document.querySelector('.loading-percentage');
 const barra = document.querySelector('.loading-bar');
 const progreso = document.getElementById('loading-progress-rect');
 
-const timeOutFinalizado = 1200; // Tiempo de espera para que la transición de finalización del loading se complete antes de quitarlo de la pantalla
-
+/* ============================================================================================================
+ * Configuración 
+ * ==========================================================================================================*/
 const svgAnchoBase = 700; // Ancho base del SVG para calcular el ancho visible de la barra de progreso
-let svgAnchoVisible = 0; // Ancho visible de la barra de progreso, calculado en función del porcentaje
-let porcentajeEntero = 0; // Porcentaje entero del progreso, redondeado al número más cercano
-
-let scrollBloqueado = false;
-let loadingFinalizado = false;  // Finalizado: El contador de loading ha llegado al 100%
-let loadingQuitado = false;     // Quitado: El loading a sido quitado de la pantalla y ya no se muestra
+const porcentajeRecursos = 95;
+// Porcentaje máximo que pueden alcanzar los recursos.
+// El 5 % restante se reserva para las comprobaciones finales.
 
 /* ============================================================================================================
- * Auxiliares
- * ==========================================================================================================*/ 
-function getElementById(id) {
-    return document.getElementById(id);
-}
+ * Estado
+ * ==========================================================================================================*/
+let porcentajeEntero = 0; // Porcentaje entero del progreso, redondeado al número más cercano
+let scrollBloqueado = false;
+let loadingFinalizado = false;  // El progreso ha llegado al 100 %
+let loadingQuitado = false;     // El overlay ha sido eliminado del DOM
 
+/* ============================================================================================================
+ * Funciones de Scroll
+ * ==========================================================================================================*/ 
 function bloquearScroll() {
     if (scrollBloqueado) return;
     scrollBloqueado = true;
@@ -60,18 +62,36 @@ function suscribirFinalizado() {
 
         loadingFinalizado = true;
 
-        if (overlay && texto && porcentaje && barra && progreso) {
-            // transición de finalización del loading css
-
-            overlay.classList.add('loading-finalizado');
-
-        }
-
+        actualizarLoading(100);
         reactivarScroll();
 
-        setTimeout(() => {
+
+        if (!overlay) {
             window.dispatchEvent(new Event('loading:quitado'));
-        }, timeOutFinalizado);
+            return;
+        }
+        overlay.classList.add('loading-finalizado');
+
+
+        /*
+         * Esperamos a que termine la transición CSS.
+         *
+         * CSS:
+         * opacity: 1 → 0
+         * duración: 1s
+        */
+        const finalizarTransicion = (event) => {
+            if (event.propertyName !== 'opacity') return;
+
+            window.dispatchEvent(new Event('loading:quitado'));
+        };
+
+
+        overlay.addEventListener(
+            'transitionend',
+            finalizarTransicion,
+            { once: true }
+        );
     });
 }
 
@@ -88,14 +108,17 @@ function suscribirQuitado() {
 }
 
 /* ============================================================================================================
- * Lógica del Loading
+ * Actualización del Loading
  * ==========================================================================================================*/
 function actualizarLoading(valor) {
     if (valor < 0) valor = 0;
     if (valor > 100) valor = 100;
 
     porcentajeEntero = Math.round(valor);
-    svgAnchoVisible = (porcentajeEntero / 100) * svgAnchoBase;
+    
+    // Ancho visible de la barra de progreso, calculado en función del porcentaje
+    const svgAnchoVisible = (porcentajeEntero / 100) * svgAnchoBase;
+
 
     if (progreso) {
         progreso.setAttribute('width', String(svgAnchoVisible));
@@ -104,30 +127,136 @@ function actualizarLoading(valor) {
     if (porcentaje) {
         porcentaje.textContent = porcentajeEntero + ' %';
     }
+    
 
     if (texto) {
-        texto.textContent = porcentajeEntero >= 100 ? 'FINALIZADO' : 'Cargando...';
+        let textoInformativo = "Cargando..." 
+        
+        // cargando fuentes -> 0-25%
+        // cargando imágenes -> 25-50%
+        // cargando videos -> 50-75%
+        // cargando renderizado -> 75-porcentajeRecursos%
+        if (porcentajeEntero < 25) {
+            textoInformativo = "Cargando fuentes...";
+        } else if (porcentajeEntero >= 25 && porcentajeEntero < 50) {
+            textoInformativo = "Cargando imágenes...";
+        } else if (porcentajeEntero >= 50 && porcentajeEntero < 75) {
+            textoInformativo = "Cargando videos...";
+        } else if (porcentajeEntero >= 75 && porcentajeEntero < porcentajeRecursos) {
+            textoInformativo = "Cargando renderizado...";
+        }
+
+        texto.textContent = porcentajeEntero >= 100 ? 'FINALIZADO' : textoInformativo;
     }
 }
 
 
-/* TODO: Implementar la incrementación del loading con el estado de preparación real del entorno*/
-function iniciarContadorLoading() {
-    const duracionMs = 900;
-    const inicio = performance.now();
-    const intervaloActualizacion = 16; // Aprox 60 FPS
+/* ============================================================================================================
+ * Esperar recursos/renderizado
+ * ==========================================================================================================*/
+function esperarImagenes() {
+    const images = Array.from(document.images);
 
-    const intervalo = setInterval(() => {
-        const transcurrido = performance.now() - inicio;
-        const porcentajeActual = Math.min((transcurrido / duracionMs) * 100, 100);
+    if (images.length === 0) {
+        return Promise.resolve();
+    }
 
-        actualizarLoading(porcentajeActual);
-
-        if (porcentajeActual >= 100) {
-            clearInterval(intervalo);
-            window.dispatchEvent(new Event('loading:finalizado'));
+    const promesas = images.map((img) => {
+        if (img.complete) {
+            return Promise.resolve();
         }
-    }, intervaloActualizacion);
+        
+        return new Promise((resolve) => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+        });
+    });
+
+    return Promise.all(promesas);
+}
+
+function esperarFuentes() {
+    if (!document.fonts) {
+        return Promise.resolve();
+    }
+
+    return document.fonts.ready;
+}
+
+function esperarVideos() {
+    const videos = Array.from(document.querySelectorAll('video'));
+
+    if (videos.length === 0) {
+        return Promise.resolve();
+    }
+
+    const promesas = videos.map((video) => {
+        //if (video.readyState >= 3) { return Promise.resolve(); }
+        /*
+         * Si ya tenemos datos suficientes para mostrar
+         * el primer frame, no necesitamos esperar más.
+        */
+        if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+            return Promise.resolve();
+        }
+
+
+        return new Promise((resolve) => {
+            const finalizar = () => {
+                limpiar();
+                resolve();
+            }
+
+            const limpiar = () => {
+                video.removeEventListener('loadeddata', finalizar); // usar loadeddata en lugar de canplaythrough, listo visiblemente pero no necesariamente cargado completamente
+                video.removeEventListener('error', finalizar);
+            }
+
+            video.addEventListener('loadeddata', finalizar, { once: true });
+            video.addEventListener('error', finalizar, { once: true });
+        });
+    });
+
+    return Promise.all(promesas);
+}
+
+function esperarRenderizado() {
+    return new Promise((resolve) => {
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                // esperamos dos frames para asegurarnos de que el renderizado se haya completado
+                resolve();
+            });
+        });
+    });
+}
+
+async function prepararEntorno() {
+    actualizarLoading(0);
+    /*
+     * Recursos: 
+     * Fuentes -> 25%
+     * Imágenes -> 50%
+     * Videos -> 75%
+     * Renderizado -> porcentajeRecursos% (85 o 95% por ejemplo)
+    */
+
+    await esperarFuentes();
+    actualizarLoading(25);
+
+    await esperarImagenes();
+    actualizarLoading(50);
+
+    await esperarVideos();
+    actualizarLoading(75);
+
+    await esperarRenderizado();
+    actualizarLoading(porcentajeRecursos);
+
+    await esperarRenderizado();
+    actualizarLoading(100);
+
+    window.dispatchEvent(new Event('loading:finalizado'));
 }
 
 function iniciarLoading() {
@@ -137,7 +266,7 @@ function iniciarLoading() {
     suscribirFinalizado();
     suscribirQuitado();
 
-    iniciarContadorLoading();
+    prepararEntorno();
 }
 
 /* ============================================================================================================
@@ -145,4 +274,4 @@ function iniciarLoading() {
  * ==========================================================================================================*/
 document.addEventListener('DOMContentLoaded', () => {
     iniciarLoading();
-});
+}, { once: true });
