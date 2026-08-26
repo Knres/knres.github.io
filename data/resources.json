@@ -9,7 +9,7 @@
     },
 
 
-    "image": {
+    "images": {
         "loading": {
             "PYRO": {
                 "sourceUrl": "https://genshin-impact-fanon.fandom.com/wiki/Genshin_Impact_Fanon_Wiki?file=Pyro.svg"
@@ -43,14 +43,14 @@
     },
 
 
-    "video": {
+    "videos": {
         "atri": {
             "sourceUrl": "https://re.xcdream.com/article/106.html"
         }
     },
 
 
-    "audio": {
+    "audios": {
         "ohaiyogozaimasu": {
             "sourceUrl": "https://re.xcdream.com/article/106.html"
         }
