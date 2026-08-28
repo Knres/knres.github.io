@@ -26,6 +26,21 @@
 
 ## 📝 Tareas
 
+### ⬜ (style/*.ccs) Implemetacion de estilos alternativos 
+- ⬜ Fecha propuesta: 28/08/2026
+- ⬜ Implemetar estilos alternativos (
+    modo noche, 
+    modo claro, 
+    modo personalizado, <-- dejar para el futuro
+    alto contraste, 
+    texto grande, 
+    alto contraste + texto grande, 
+    estilo impreso),
+    uso de tipografias Arial&Roboto para mejorar la legibilidad en estilos como alto contraste o texto grande (o directamente sustituir las tipografias actuales)
+- ⬜ en accesibilidad.html realizar la seleccion de estilo o personalización del estilo
+
+---
+
 
 ### ✅ (script/loading.js) Modificar el orden de inicialización del loading para poder convertir fondo en modulos importables
 - ⬜ Fecha propuesta: 26/08/2026

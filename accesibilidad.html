@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Knres" />
+    <meta name="description" content="Accesibilidad digital del sitio web" />
+    <meta name="robots" content="noindex, nofollow" /><!-- no indexar la pagina -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121212" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Estilos comunes -->
+    <link rel="stylesheet" href="./styles/estilo.css" />
+    <link rel="stylesheet" href="./styles/loading.css" />
+    <link rel="stylesheet" href="./styles/fondo.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="128x128" href="./images/favicon.png" />
+    <link rel="icon" href="./images/favicon.ico" sizes="16x16 32x32 48x48 128x128" />
+
+    <!-- Fuentes preload -->
+    <link rel="preload" href="./fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Scripts para cargar modulos -->
+    <script type="module" src="./scripts/add.header.js"></script>
+    <script type="module" src="./scripts/add.footer.js"></script>
+    <script type="module" src="./scripts/add.fondo.js"></script>
+
+    <!-- Scripts comunes -->
+    <script type="module" src="./scripts/loading.js"></script>
+    <script type="module" src="./scripts/fondo.js"></script>
+    <script src="./scripts/clock.js"></script>
+
+    <!-- Scripts específicos -->
+
+
+    <!-- Estilos específicos -->
+
+
+    <!-- Título de la página -->
+    <title>Accesibilidad digital · Page</title>
+</head>
+
+<body>
+    <div id="loading" class="loading"
+        role="status"
+        aria-live="polite"
+        aria-label="Cargando contenido de la página"
+    >
+        <span class="loading-text" aria-hidden="true">Cargando...</span>
+        <span class="loading-percentage" aria-hidden="true">0%</span>
+        <div class="loading-bar">
+            <svg class="loading-svg" viewBox="0 0 700 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <defs>
+                    <clipPath id="loading-progress-mask">
+                        <rect id="loading-progress-rect" x="0" y="0" width="0" height="100"></rect>
+                    </clipPath>
+                </defs>
+                <image href="./images/loading.svg" x="0" y="0" width="700" height="100" clip-path="url(#loading-progress-mask)"></image>
+            </svg>
+        </div>
+    </div><!-- loading -->
+
+    <!-- fondo -->
+    <div id="fondo"></div>
+    
+    <!-- header -->
+    <div id="header"></div>
+     
+    <main>
+        <h1>Accesibilidad digital</h1>
+
+        <section>
+            <h2>Declaración de accesibilidad</h2>
+            <p>
+                La página trabajara para que sea accesible para el mayor número de personas posibles,
+                con independencia de sus capacidades, dispositivo o entorno tecnológico.
+                Esta declaración de accesibilidad se intentara basa en las 
+                <abbr title="Web Content Accessibility Guidelines">
+                    WCAG 2.1 
+                </abbr>
+                del 
+                <a href="https://www.w3.org/WAI/" target="_blank" rel="noopener noreferrer">
+                    W3C – Web Accessibility Initiative (WAI)
+                </a>.
+            </p>
+        </section>
+
+        <section>
+            <h2>Etiquetado semántico</h2>
+            <p>
+                Toda la estructura del sitio se ha desarrollado empleando etiquetas semánticas de HTML5 en la medida de lo posible
+                (
+                <code>&lt;header&gt;</code>, 
+                <code>&lt;nav&gt;</code>, 
+                <code>&lt;main&gt;</code>, 
+                <code>&lt;section&gt;</code>, 
+                <code>&lt;footer&gt;</code>, etc.
+                ) 
+                para mejorar la comprensión por parte de lectores de pantalla y navegadores especializados.
+            </p>
+
+            <p>
+                Además, se han utilizado atributos 
+                <code>aria-label</code> y 
+                <code>alt</code> 
+                en los elementos visuales y enlaces relevantes, 
+                de forma que el contenido sea interpretado correctamente por tecnologías de asistencia. 
+            </p>
+
+            <p>
+                Aquelos elementos puramente decorativos se han omitido del marcado HTML o gestionado mediante CSS, 
+                para evitar distracciones o redundancias en la lectura de pantalla.  
+            </p>
+        </section>
+
+        <section>
+            <h2>Uso correcto de los colores</h2>
+            <p>
+                Los colores que se emplearan intentaran respetar la identidad visual del sitio y 
+                cumplir con los niveles de contraste recomendados por las pautas WCAG 2.1 (nivel AA). 
+                Por defecto se emplearan fondos oscuror para reducir la fatiga visual, 
+                pero se ofreceran estilos alternativos que permitan aumentar el contraste o emplear fondos claros.
+            </p>
+            <!-- modo noche, modo claro, modo personalizado, alto contraste, texto grande, alto contraste + texto grande, estilo impreso -->
+        </section>
+
+        <section>
+            <h2>Selección de estilos</h2>
+            <p>
+                En navegadores que no soportan la selección de estilos alternativos (como Chrome o Edge), 
+                se puede utilizar el menú de accesibilidad propio del sitio o 
+                las extensiones de navegador para modificar el contraste o el tamaño del texto.
+            </p>
+            
+            <!-- select/options para los estilos alternativos -->
+            <!-- boton guardar -->
+
+            <p>
+                Una vez seleccionado un estilo alternativo, puedes guardarlo para que se aplique automáticamente en futuras visitas.
+            </p>
+        </section>
+
+
+        <section>
+            <h2>Otras características de accesibilidad</h2>
+            <ul>
+                <li>Diseño adaptativo y responsive para diferentes dispositivos y tamaños de pantalla.</li>
+                <li>Compatibilidad con ampliación mediante zoom sin pérdida de funcionalidad.</li>
+                <li>Separación entre contenido y presentación mediante hojas de Estilo CSS.</li>
+                <li>Enlaces y botones accesibles con teclado y visibles en su estado de foco.</li>
+                <li>Uso de tipografía <strong>Arial</strong> y <strong>Roboto</strong> en los estilos accesibles para mejorar la lectura.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Compromiso de mejora</h2>
+            <p>
+                La página web trabajará para mejorar la accesibilidad. 
+                Si encuentra alguna dificultad para acceder a la información o funcionalidades, 
+                puedes contactar con
+                <a href="https://github.com/Knres" target="_blank" rel="noopener noreferrer">Knres</a>.
+            </p>
+        </section>
+    </main>
+
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+</body>
+
+</html>
