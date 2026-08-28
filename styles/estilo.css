@@ -201,7 +201,7 @@ body {
         position: fixed;
         left: 1rem;
         bottom: 1rem;
-        z-index: 1000;
+        z-index: 40;
         
         width: 24rem;
         min-width: 390px; /*solo se puede comprimir hasta los 390px*/
