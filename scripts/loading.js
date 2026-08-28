@@ -183,6 +183,12 @@ function esperarFuentes() {
     return document.fonts.ready;
 }
 
+function esperarFondo() {
+    return new Promise((resolve) => {
+        window.addEventListener('fondo:cargado', resolve, { once: true });
+    });
+}
+
 function esperarVideos() {
     const videos = Array.from(document.querySelectorAll('video'));
 
@@ -241,8 +247,13 @@ async function prepararEntorno() {
      * Renderizado -> porcentajeRecursos% (85 o 95% por ejemplo)
     */
 
+    const fondoCargado = esperarFondo();
+
     await esperarFuentes();
     actualizarLoading(25);
+
+    await fondoCargado;
+    // esperando recursos del fonto antes de comenzar el loading
 
     await esperarImagenes();
     actualizarLoading(50);

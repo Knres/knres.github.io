@@ -6,12 +6,9 @@ Se mantiene toda la plantilla, modificando cosas especificas de cada pagina:
 
 El header y footer son comunes a todas las paginas y no son pesador por lo que se importaran mediante JS para no repetir codigo
 El loading es la pantalla de carga por lo que se mantendrá (no importar con JS)
-El fondo al tratarse de video + audio se mantendrá (no importar con JS) para no afectar al progreso del loading (finalizar y quitar)
+El fondo se importara mediante JS -> el loading.js espera al evento fondo:cargado antes de comprobar sus recursos
 
-/* 
-TODO:
-- modificar el orden de inicializacion de loading.js para convertir el fondo en modulos de importacion
-*/
+
 
 /////////////////////
 ///  IMPORTANTE:  ///
@@ -51,6 +48,7 @@ Al igual que se se hacen otras modificaciones en el head
     <!-- Scripts para cargar modulos -->
     <script type="module" src="./scripts/add.header.js"></script>
     <script type="module" src="./scripts/add.footer.js"></script>
+    <script type="module" src="./scripts/add.fondo.js"></script>
 
     <!-- Scripts comunes -->
     <script type="module" src="./scripts/loading.js"></script>
@@ -86,41 +84,9 @@ Al igual que se se hacen otras modificaciones en el head
             </svg>
         </div>
     </div><!-- loading -->
-    <div id="fondo" class="fondo" >
-        <video
-            id="fondovideo"
-            class="fondovideo"
-            muted
-            loop
-            playsinline
-            preload="auto"
-            aria-hidden="true"
-        ><!--No tiene autoplay -> play cuando se quite el loading-->
-            <!--
-            <source 
-                src="./videos/atri.mp4" 
-                type="video/mp4" 
-                media="(max-width: 390px)"
-            />
-            <source 
-                src="./videos/atri.mp4" 
-                type="video/webm" 
-                media="(max-width: 390px)"
-            />
-            -->
-            <source src="./videos/atri.mp4" type="video/mp4" />
-            <source src="./videos/atri.webm" type="video/webm" />
-        </video>
 
-        <audio
-            id="audiosaludo" 
-            preload="auto"
-            aria-hidden="true"
-        >
-            <source src="./audios/ohaiyogozaimasu.wav" type="audio/wav" />
-            <source src="./audios/ohaiyogozaimasu.mp3" type="audio/mp3" />
-        </audio>
-    </div><!-- fondo -->
+    <!-- fondo -->
+    <div id="fondo"></div>
     
     <!-- header -->
     <div id="header"></div>

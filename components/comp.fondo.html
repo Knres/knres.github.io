@@ -1,0 +1,31 @@
+<div id="fondo" class="fondo">
+    <video 
+        id="fondovideo"
+        class="fondovideo"
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+    ><!--No tiene autoplay -> play cuando se quite el loading-->
+        <!--
+        <source 
+            src="./videos/atri.mp4" 
+            type="video/mp4" 
+            media="(max-width: 390px)"
+        />
+        <source 
+            src="./videos/atri.mp4" 
+            type="video/webm" 
+            media="(max-width: 390px)"
+        />
+        -->
+        <source src="./videos/atri.mp4" type="video/mp4" />
+        <source src="./videos/atri.webm" type="video/webm" />
+    </video>
+
+    <audio id="audiosaludo" preload="auto" aria-hidden="true">
+        <source src="./audios/ohaiyogozaimasu.wav" type="audio/wav" />
+        <source src="./audios/ohaiyogozaimasu.mp3" type="audio/mp3" />
+    </audio>
+</div>
