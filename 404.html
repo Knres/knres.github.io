@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Knres" />
+    <meta name="description" content="No se ha encontrado la página solicitada" />
+    <meta name="robots" content="noindex, nofollow" /><!-- no indexar la pagina -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121212" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Estilos comunes -->
+    <link rel="stylesheet" href="./styles/estilo.css" />
+    <link rel="stylesheet" href="./styles/loading.css" />
+    <link rel="stylesheet" href="./styles/fondo.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="128x128" href="./images/favicon.png" />
+    <link rel="icon" href="./images/favicon.ico" sizes="16x16 32x32 48x48 128x128" />
+
+    <!-- Fuentes preload -->
+    <link rel="preload" href="./fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Scripts para cargar modulos -->
+    <script type="module" src="./scripts/add.header.js"></script>
+    <script type="module" src="./scripts/add.footer.js"></script>
+    <script type="module" src="./scripts/add.fondo.js"></script>
+
+    <!-- Scripts comunes -->
+    <script type="module" src="./scripts/loading.js"></script>
+    <script type="module" src="./scripts/fondo.js"></script>
+    <script src="./scripts/clock.js"></script>
+
+    <!-- Scripts específicos -->
+
+
+    <!-- Estilos específicos -->
+
+
+    <!-- Título de la página -->
+    <title>Página no encontrada · Page</title>
+</head>
+
+<body>
+    <div id="loading" class="loading"
+        role="status"
+        aria-live="polite"
+        aria-label="Cargando contenido de la página"
+    >
+        <span class="loading-text" aria-hidden="true">Cargando...</span>
+        <span class="loading-percentage" aria-hidden="true">0%</span>
+        <div class="loading-bar">
+            <svg class="loading-svg" viewBox="0 0 700 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <defs>
+                    <clipPath id="loading-progress-mask">
+                        <rect id="loading-progress-rect" x="0" y="0" width="0" height="100"></rect>
+                    </clipPath>
+                </defs>
+                <image href="./images/loading.svg" x="0" y="0" width="700" height="100" clip-path="url(#loading-progress-mask)"></image>
+            </svg>
+        </div>
+    </div><!-- loading -->
+
+    <!-- fondo -->
+    <div id="fondo"></div>
+    
+    <!-- header -->
+    <div id="header"></div>
+     
+    <main>
+        <h1>Página no encontrada</h1>
+
+        <p>
+            Lo sentimos, la página que estás buscando no se ha encontrado. 
+            Puede que la dirección URL esté mal escrita o que la página haya sido eliminada.
+        </p>
+        
+        <p>
+            Por favor, verifica la dirección URL o regresa a la 
+            <a href="index.html">página principal</a>.
+        </p>
+
+        <p>
+            Si crees que esto es un error, por favor contactar con
+            <a href="https://github.com/Knres" target="_blank" rel="noopener noreferrer">Knres</a>.
+        </p>
+        
+    </main>
+
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+</body>
+
+</html>
