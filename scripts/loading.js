@@ -134,13 +134,16 @@ function actualizarLoading(valor) {
         
         // cargando fuentes -> 0-25%
         // cargando imágenes -> 25-50%
+        // cargando audio -> 50-65%
         // cargando videos -> 50-75%
         // cargando renderizado -> 75-porcentajeRecursos%
         if (porcentajeEntero < 25) {
             textoInformativo = "Cargando fuentes...";
         } else if (porcentajeEntero >= 25 && porcentajeEntero < 50) {
             textoInformativo = "Cargando imágenes...";
-        } else if (porcentajeEntero >= 50 && porcentajeEntero < 75) {
+        } else if (porcentajeEntero >= 50 && porcentajeEntero < 65) {
+            textoInformativo = "Cargando audios...";
+        } else if (porcentajeEntero >= 65 && porcentajeEntero < 75) {
             textoInformativo = "Cargando videos...";
         } else if (porcentajeEntero >= 75 && porcentajeEntero < porcentajeRecursos) {
             textoInformativo = "Cargando renderizado...";
@@ -187,6 +190,37 @@ function esperarFondo() {
     return new Promise((resolve) => {
         window.addEventListener('fondo:cargado', resolve, { once: true });
     });
+}
+
+function esperarAudios() {
+    const audios = Array.from(document.querySelectorAll('audio'));
+
+    if (audios.length === 0) {
+        return Promise.resolve();
+    }
+
+    const promesas = audios.map((audio) => {
+        if (audio.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+            return Promise.resolve();
+        }
+
+        return new Promise((resolve) => {
+            const finalizar = () => {
+                limpiar();
+                resolve();
+            };
+
+            const limpiar = () => {
+                audio.removeEventListener('loadeddata', finalizar);
+                audio.removeEventListener('error', finalizar);
+            };
+
+            audio.addEventListener('loadeddata', finalizar, { once: true });
+            audio.addEventListener('error', finalizar, { once: true });
+        });
+    });
+
+    return Promise.all(promesas);
 }
 
 function esperarVideos() {
@@ -243,6 +277,7 @@ async function prepararEntorno() {
      * Recursos: 
      * Fuentes -> 25%
      * Imágenes -> 50%
+     * Audios -> 65%
      * Videos -> 75%
      * Renderizado -> porcentajeRecursos% (85 o 95% por ejemplo)
     */
@@ -257,6 +292,9 @@ async function prepararEntorno() {
 
     await esperarImagenes();
     actualizarLoading(50);
+
+    await esperarAudios();
+    actualizarLoading(65);
 
     await esperarVideos();
     actualizarLoading(75);
