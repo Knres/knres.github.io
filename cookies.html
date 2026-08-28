@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="author" content="Knres" />
-    <meta name="description" content="Página principal del sitio web" />
+    <meta name="description" content="Política de cookies del sitio web" />
     <meta name="robots" content="noindex, nofollow" /><!-- no indexar la pagina -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#121212" />
@@ -19,15 +19,16 @@
     <link rel="icon" type="image/png" sizes="128x128" href="./images/favicon.png" />
     <link rel="icon" href="./images/favicon.ico" sizes="16x16 32x32 48x48 128x128" />
 
+    <!-- Fuentes preload -->
+    <link rel="preload" href="./fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+
     <!-- Scripts para cargar modulos -->
     <script type="module" src="./scripts/add.header.js"></script>
     <script type="module" src="./scripts/add.footer.js"></script>
     <script type="module" src="./scripts/add.fondo.js"></script>
     <script type="module" src="./scripts/add.bannerCookies.js"></script>
 
-    <!-- Fuentes preload -->
-    <link rel="preload" href="./fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Scripts comunes -->
     <script type="module" src="./scripts/loading.js"></script>
@@ -35,13 +36,13 @@
     <script src="./scripts/clock.js"></script>
 
     <!-- Scripts específicos -->
-
+    <script type="module" src="./scripts/page.cookies.js"></script>
 
     <!-- Estilos específicos -->
 
 
     <!-- Título de la página -->
-    <title>Index · Page</title>
+    <title>Política de cookies · Page</title>
 </head>
 
 <body>
@@ -66,57 +67,52 @@
 
     <!-- fondo -->
     <div id="fondo"></div>
-
+    
     <!-- header -->
     <div id="header"></div>
-
+     
     <main>
-        <h1>Página principal</h1>
+        <h1>Política de Cookies</h1>
 
-        <section id="section1">
-            <h2>Sección 1</h2>
-            <article>
-                <h3>Artículo 1</h3>
-                <p>Contenido del artículo 1</p>
-            </article>
+        <section>
+            <h2>¿Qué son las cookies?</h2>
+            <p>
+                Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita un sitio web. 
+                Se utilizan para mejorar la experiencia del usuario y recordar preferencias.
+            </p>
 
-            <article>
-                <h3>Artículo 2</h3>
-                <p>Contenido del artículo 2</p>
-            </article>
+            <h2>Cookies utilizadas en este sitio web</h2>
+            <p>
+                Este sitio web utiliza las siguientes cookies:
+            </p>
+            
+            <h3>Cookies esenciales</h3>
+            <ul>
+                <li>
+                    <strong>consentimientoCookies:</strong> Almacena su preferencia sobre el uso de cookies. 
+                    Esta cookie es necesaria para recordar si ha aceptado o rechazado las cookies. 
+                    Duración: 90 días.
+                </li>
+            </ul>
 
-            <article>
-                <h3>Recurso pesado de prueba</h3>
-
-            </article>
+            <h3>Cookies de preferencias</h3>
+            <ul>
+                <li>
+                    <strong>estiloPreferido:</strong> Almacena su preferencia de Estilo visual del sitio web.
+                    Esta cookie solo se utiliza si ha aceptado las cookies. 
+                    Duración: 45 días.
+                </li>
+            </ul>
         </section>
 
-        <section id="section2">
-            <h2>Sección 2</h2>
-            <article>
-                <h3>Artículo 1</h3>
-                <p>Contenido del artículo 1</p>
-            </article>
+        <section>
+            <h2>Gestión de preferencias de cookies</h2>
 
-            <article>
-                <h3>Artículo 2</h3>
-                <p>Contenido del artículo 2</p>
-            </article>
-        </section>
-
-        <section id="section3">
-            <h2>Sección 3</h2>
-            <article>
-                <h3>Artículo 1</h3>
-                <p>Contenido del artículo 1</p>
-            </article>
-
-            <article>
-                <h3>Artículo 2</h3>
-                <p>Contenido del artículo 2</p>
-            </article>
+            <p id="estadoConsentimientoCookies"></p>
+            <!-- Botón para cambiar las preferencias de cookies (consentir o eliminar consentimiento) -->
         </section>
     </main>
+
 
     <!-- footer -->
     <div id="footer"></div>

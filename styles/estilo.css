@@ -27,6 +27,7 @@
     --card-bg: #1e1e1e;
     --text-color: #e0e0e0;
     --accent-color: #bb86fc;
+    --accentshadow-color: #bb86fc66;
     --focus-color: #ffbf47;
 }
 
@@ -40,6 +41,7 @@ a {
     text-decoration: none;
 
     &:hover {
+        color: var(--focus-color);
         text-decoration: underline;
     }
 
@@ -180,8 +182,99 @@ body {
             font-weight: 700;
         }
 
+        .enlacesFooter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+
+            >p {
+                margin: 0;
+            }
+        } /* enlacesFooter */
+
         
     } /* footer */
 
 
+    .bannerCookies {
+        position: fixed;
+        left: 1rem;
+        bottom: 1rem;
+        z-index: 1000;
+        
+        width: 24rem;
+        min-width: 390px; /*solo se puede comprimir hasta los 390px*/
+
+        background-color: var(--card-bg);
+
+        border: 1px solid var(--accent-color);
+        border-radius: 0.5rem;
+
+        box-shadow: 0 0.5rem 2rem var(--accentshadow-color);
+
+        .bannerCookies-contenido {
+            display: flex;
+            flex-direction: column;
+
+            gap: 0.75rem;
+
+            padding: 1.25rem;
+
+            .bannerCookies-acciones {
+                display: flex;
+                justify-content: flex-end;
+
+                gap: 0.75rem;
+
+                margin-top: 0.25rem;
+            } /* bannerCookies-acciones */ 
+        }/* bannerCookies-contenido */
+    }/* bannerCookies */
+}/* body */
+
+
+
+/* ============================================================================================================
+ * Botones
+ * ==========================================================================================================*/
+.botonPrincipal,
+.botonSecundario {
+    padding: 0.6rem 1rem;
+
+    border: 2px solid var(--accent-color);
+    border-radius: 0.25rem;
+
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+
+    &:hover {
+        background-color: var(--focus-color);
+        color: var(--bg-color);
+        border: 2px solid var(--accent-color);
+    }
+
+    &:focus {
+        outline: 3px solid var(--focus-color);
+        outline-offset: 2px;
+        border-radius: 1px;
+    }
+}
+
+
+.botonPrincipal {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+
+}
+
+.botonSecundario {
+    background-color: transparent;
+    color: var(--accent-color);
 }
