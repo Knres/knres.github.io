@@ -1,5 +1,7 @@
 'use strict';
 
+import { checkConsentimientoCookies, setCookie } from './import.cookies.js';
+
 /* 
  * Se necesita que el loading se haya finalizado para poder ejecutar el código de fondo.js, 
  * ya que este código depende de que el loading haya terminado para poder ejecutarse correctamente.
@@ -25,6 +27,10 @@ function reproducirAudioSaludo() {
 
     if (!audio) return;
 
+    const marcarComoReproducido = () => {
+        setCookie('audioSaludo', 'reproducido', 1); // 1 día de duración
+    }
+
     // autoplay -> error.name === 'NotAllowedError'
     audio.play().catch((error) => {
         if (error.name === 'NotAllowedError') {
@@ -45,6 +51,11 @@ function reproducirAudioSaludo() {
                             // eliminar del dom tras terminar de reproducir el audio
                             audio.remove();
                         }, { once: true });
+
+                        // marcar como reproducido
+                        if (checkConsentimientoCookies() === 'aceptado') {
+                            marcarComoReproducido();
+                        }
 
                     }).catch((errorAlReproducir) => {
                         console.error('Error al reproducir el audio de saludo después de la interacción del usuario:', errorAlReproducir);

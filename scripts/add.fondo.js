@@ -1,5 +1,7 @@
 'use strict';
 
+import { getCookie } from './import.cookies.js';
+
 async function addFondo() {
     const contenedor = document.getElementById('fondo');
 
@@ -17,7 +19,25 @@ async function addFondo() {
             throw new Error(`No se pudo cargar el fondo: ${respuesta.status}`);
         }
 
-        contenedor.outerHTML = await respuesta.text();
+
+        let htmlFondo = await respuesta.text();
+        // Comprobar si existe la cookie audioSaludo (reproducido)
+
+        if (getCookie('audioSaludo')) {
+            // Si existe -> ya se ha reproducido hoy (no importar)
+            // por lo que lo eliminaremos de htmlFondo
+            htmlFondo = htmlFondo.replace(
+                /<audio[^>]*id=["']audiosaludo["'][^>]*>[\s\S]*?<\/audio>/i,
+                ''
+            );
+            // /<audio Buscar comienzo por <audio
+            // [^>]*id=["']audiosaludo["'] Buscar id="audiosaludo" o id='audiosaludo'
+            // [^>]*> Buscar el resto de atributos hasta >
+            // [\s\S]*?<\/audio> Buscar cualquier cosa hasta </audio>
+            // i -> case insensitive (ignorar mayúsculas y minúsculas)
+        }
+
+        contenedor.outerHTML = htmlFondo;
     } catch (error) {
         console.error(error);
     } finally {
