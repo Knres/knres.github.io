@@ -10,6 +10,18 @@
     <meta name="theme-color" content="#121212" />
     <meta name="color-scheme" content="dark" />
 
+    <!-- Base URL -->
+    <script>
+        const base = document.createElement('base');
+        
+        if (window.location.hostname === 'localhost') {
+            base.href = '/knres.github.io/';
+        } else {
+            base.href = '/';
+        } 
+        document.head.appendChild(base); 
+    </script>
+
     <!-- Estilos comunes -->
     <link rel="stylesheet" href="./styles/estilo.css" />
     <link rel="stylesheet" href="./styles/loading.css" />
@@ -36,7 +48,8 @@
     <script src="./scripts/clock.js"></script>
 
     <!-- Scripts específicos -->
-
+    <script type="module" src="./scripts/page.404.js"></script>
+    
 
     <!-- Estilos específicos -->
 
@@ -75,13 +88,16 @@
         <h1>Página no encontrada</h1>
 
         <p>
-            Lo sentimos, la página que estás buscando no se ha encontrado. 
+            Lo sentimos, la página que estás buscando no se ha encontrado.<br>
             Puede que la dirección URL esté mal escrita o que la página haya sido eliminada.
+            <a href="javascript:history.back()" id="volverAtras">Volver a la página anterior.</a>
         </p>
+
+        <p> Has intentado acceder a: <strong id="urlErronea"></strong> </p>
         
         <p>
             Por favor, verifica la dirección URL o regresa a la 
-            <a href="index.html">página principal</a>.
+            <a href="./">página principal</a>
         </p>
 
         <p>
@@ -97,6 +113,8 @@
 
     <!-- Banner de cookies -->
     <div id="bannerCookies"></div>
+
+    
 
 </body>
 
