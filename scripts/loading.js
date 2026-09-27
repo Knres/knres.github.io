@@ -200,7 +200,11 @@ function esperarAudios() {
     }
 
     const promesas = audios.map((audio) => {
-        if (audio.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        if (
+            audio.error ||
+            audio.networkState === HTMLMediaElement.NETWORK_NO_SOURCE ||
+            audio.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
+        ) {
             return Promise.resolve();
         }
 
@@ -217,6 +221,12 @@ function esperarAudios() {
 
             audio.addEventListener('loadeddata', finalizar, { once: true });
             audio.addEventListener('error', finalizar, { once: true });
+
+            setTimeout(() => {
+                if (audio.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+                    finalizar();
+                }
+            }, 0);
         });
     });
 
@@ -236,7 +246,11 @@ function esperarVideos() {
          * Si ya tenemos datos suficientes para mostrar
          * el primer frame, no necesitamos esperar más.
         */
-        if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        if (
+            video.error ||
+            video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE ||
+            video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
+        ) {
             return Promise.resolve();
         }
 
@@ -254,6 +268,12 @@ function esperarVideos() {
 
             video.addEventListener('loadeddata', finalizar, { once: true });
             video.addEventListener('error', finalizar, { once: true });
+
+            setTimeout(() => {
+                if (video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+                    finalizar();
+                }
+            }, 0);
         });
     });
 
