@@ -10,6 +10,13 @@
     <meta name="theme-color" content="#121212" />
     <meta name="color-scheme" content="dark" />
 
+    <!-- Requerir uso de JavaScript -->
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=./javascript-requerido.html" />
+    </noscript>
+
+    <script>document.documentElement.classList.add("js-enabled");</script>
+
     <!-- Base URL -->
     <script>
         const base = document.createElement('base');
@@ -61,6 +68,8 @@
 </head>
 
 <body>
+    <noscript>La página requiere uso de JavaScript para funcionar correctamente.</noscript>
+
     <div id="loading" class="loading"
         role="status"
         aria-live="polite"
@@ -105,6 +114,7 @@
         <p>
             Si crees que esto es un error, por favor contactar con
             <a href="https://github.com/Knres" target="_blank" rel="noopener noreferrer">Knres</a>.
+            <a href="javascript:history.back()" id="volverAtras">Volver a la página anterior.</a>
         </p>
         
     </main>

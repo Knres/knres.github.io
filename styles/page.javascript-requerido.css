@@ -1,0 +1,58 @@
+@import url("./import.fonts.css");
+@import url("./import.colores.css");
+
+html {
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    color-scheme: dark;
+
+    scroll-behavior: smooth;
+    overflow-x: clip;
+}
+
+h1 {
+    font-family: "Anton", sans-serif;
+    margin: 0;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--focus-color);
+        text-decoration: underline;
+    }
+
+    &:focus {
+        outline: 3px solid var(--focus-color);
+        outline-offset: 2px;
+        border-radius: 1px;
+    }
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    min-width: 390px; /*solo se puede comprimir hasta los 390px*/
+    min-height: 100vh; /*hacer que el body ocupe toda la altura disponible*/
+    
+    display: grid;
+    place-items: center;
+    text-align: center;
+
+    color: var(--text-color);
+    font-family: "Inter", sans-serif;
+    background-color: transparent; /* Importante para que el video se vea */
+
+    >main {
+        padding: 2rem;
+
+        
+    }
+}
+

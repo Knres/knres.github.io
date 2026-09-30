@@ -32,6 +32,13 @@ Al igual que se se hacen otras modificaciones en el head
     <meta name="theme-color" content="#121212" />
     <meta name="color-scheme" content="dark" />
 
+    <!-- Requerir uso de JavaScript -->
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=./javascript-requerido.html" />
+    </noscript>
+
+    <script>document.documentElement.classList.add("js-enabled");</script>
+
     <!-- Estilos comunes -->
     <link rel="stylesheet" href="./styles/estilo.css" />
     <link rel="stylesheet" href="./styles/loading.css" />
@@ -68,6 +75,8 @@ Al igual que se se hacen otras modificaciones en el head
 </head>
 
 <body>
+    <noscript>La página requiere uso de JavaScript para funcionar correctamente.</noscript>
+
     <div id="loading" class="loading"
         role="status"
         aria-live="polite"
